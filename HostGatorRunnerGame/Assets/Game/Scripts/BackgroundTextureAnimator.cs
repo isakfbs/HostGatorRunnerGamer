@@ -6,6 +6,7 @@ public class Background_animation : MonoBehaviour
 {
     private Material mat;
     private Vector2 offset;
+    public float speed = 0.2f;
     void Start()
     {
         mat = gameObject.GetComponent<Renderer>().material;
@@ -15,7 +16,7 @@ public class Background_animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offset.x = offset.x + (0.2f * Time.deltaTime);
+        offset.x = offset.x + (speed * Time.deltaTime);
         mat.SetTextureOffset("_MainTex", offset);
     }
 }
