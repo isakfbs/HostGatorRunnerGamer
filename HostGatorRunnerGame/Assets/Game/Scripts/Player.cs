@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     public float jumpFactor = 5f;
     public float forwardFactor = 0.2f;
+    private float forwardForce = 0f;
     void Start()
     {
         plyRB = gameObject.GetComponent<Rigidbody2D>();
@@ -28,7 +29,12 @@ public class Player : MonoBehaviour
     void Jump(){
         if(canJump){
             canJump = false;
-            plyRB.velocity = new Vector2(forwardFactor,jumpFactor);
+            if(transform.position.x < 0){
+                forwardForce = forwardFactor;
+            }else{
+                forwardForce = 0f;
+            }
+            plyRB.velocity = new Vector2(forwardForce,jumpFactor);
             animator.Play("player_jumping");
         }
     }
